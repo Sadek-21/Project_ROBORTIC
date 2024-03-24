@@ -2,5 +2,5 @@
     "board": "arduino:avr:uno",
     "programmer": "avrisp",
     "output": ".arduino/output",
-    "sketch": "Electronic_Lock/Electronic_Lock.ino"
+    "sketch": "Liquid_Level_Detector/Liquid_Level_Detector.ino"
 }

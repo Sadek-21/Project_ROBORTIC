@@ -1,87 +1,79 @@
-const int SensorPin = A0;
-const int RLEDPin  = 2;
-const int YLEDPin  = 3;
-const int Y2LEDPin = 4;
-const int BLEDPin  = 5;
-const int B2LEDPin = 6;
-const int GLEDPin  = 7;
-
 void setup() 
 {
-  pinMode(SensorPin, INPUT);
-  pinMode(RLEDPin, OUTPUT);
-  pinMode(YLEDPin, OUTPUT); 
-  pinMode(Y2LEDPin, OUTPUT);
-  pinMode(B2LEDPin, OUTPUT); 
-  pinMode(GLEDPin, OUTPUT); 
+  pinMode(A0, INPUT);
+  pinMode(2 , OUTPUT);
+  pinMode(3 , OUTPUT); 
+  pinMode(4 , OUTPUT);
+  pinMode(6 , OUTPUT); 
+  pinMode(7 , OUTPUT); 
 }
 void loop() 
 {
-  int Val = analogRead(SensorPin);    // Read the analog value form sensor
+  int Val = analogRead(A0);    // Read the analog value form sensor
   int Level = map(Val,0,1023,0,100);
 
   if(Level >= 90)
   {
-    digitalWrite(RLEDPin, HIGH);
-    digitalWrite(YLEDPin, HIGH);
-    digitalWrite(Y2LEDPin,HIGH);
-    digitalWrite(BLEDPin, HIGH);
-    digitalWrite(B2LEDPin,HIGH);
-    digitalWrite(GLEDPin, HIGH);
+    digitalWrite(2 , HIGH);
+    digitalWrite(3 , HIGH);
+    digitalWrite(4 ,HIGH);
+    digitalWrite(5 , HIGH);
+    digitalWrite(6 ,HIGH);
+    digitalWrite(7 , HIGH);
   }
   else if(Level >= 80 && Level < 90)
   {
-    digitalWrite(RLEDPin, HIGH);
-    digitalWrite(YLEDPin, HIGH);
-    digitalWrite(Y2LEDPin,HIGH);
-    digitalWrite(BLEDPin, HIGH);
-    digitalWrite(B2LEDPin,HIGH);
-    digitalWrite(GLEDPin, LOW);
+    digitalWrite(2 , HIGH);
+    digitalWrite(3 , HIGH);
+    digitalWrite(4 ,HIGH);
+    digitalWrite(5 , HIGH);
+    digitalWrite(6 ,HIGH);
+    digitalWrite(7 , LOW);
   }
   else if(Level >= 60 && Level < 80)
   {
-    digitalWrite(RLEDPin, HIGH);
-    digitalWrite(YLEDPin, HIGH);
-    digitalWrite(Y2LEDPin,HIGH);
-    digitalWrite(BLEDPin, HIGH);
-    digitalWrite(B2LEDPin,LOW);
-    digitalWrite(GLEDPin, LOW);
+    digitalWrite(2 , HIGH);
+    digitalWrite(3 , HIGH);
+    digitalWrite(4 , HIGH);
+    digitalWrite(5 , HIGH);
+    digitalWrite(6 , LOW);
+    digitalWrite(7 , LOW);
   }
   else if(Level >= 40 && Level < 60)
   {
-    digitalWrite(RLEDPin, HIGH);
-    digitalWrite(YLEDPin, HIGH);
-    digitalWrite(Y2LEDPin,HIGH);
-    digitalWrite(BLEDPin, LOW);
-    digitalWrite(B2LEDPin,LOW);
-    digitalWrite(GLEDPin, LOW);
+    digitalWrite(2 , HIGH);
+    digitalWrite(3 , HIGH);
+    digitalWrite(4 , HIGH);
+    digitalWrite(5 , LOW);
+    digitalWrite(6 , LOW);
+    digitalWrite(7 , LOW);
   }
   else if(Level >= 20 && Level < 40)
   {
-    digitalWrite(RLEDPin, HIGH);
-    digitalWrite(YLEDPin, HIGH);
-    digitalWrite(Y2LEDPin,LOW);
-    digitalWrite(BLEDPin, LOW);
-    digitalWrite(B2LEDPin,LOW);
-    digitalWrite(GLEDPin, LOW);
+    digitalWrite(2 , HIGH);
+    digitalWrite(3 , HIGH);
+    digitalWrite(4 , LOW);
+    digitalWrite(5 , LOW);
+    digitalWrite(6 , LOW);
+    digitalWrite(7 , LOW);
   }
   else if(Level < 20)
   {
-    digitalWrite(RLEDPin, HIGH);
-    digitalWrite(YLEDPin, LOW);
-    digitalWrite(Y2LEDPin,LOW);
-    digitalWrite(BLEDPin, LOW);
-    digitalWrite(B2LEDPin,LOW);
-    digitalWrite(GLEDPin, LOW);
+    digitalWrite(2 , HIGH);
+    digitalWrite(3 , LOW);
+    digitalWrite(4 , LOW);
+    digitalWrite(5 , LOW);
+    digitalWrite(6 , LOW);
+    digitalWrite(7 , LOW);
   }
   else
   {
-    digitalWrite(RLEDPin, LOW);
-    digitalWrite(YLEDPin, LOW);
-    digitalWrite(Y2LEDPin,LOW);
-    digitalWrite(BLEDPin, LOW);
-    digitalWrite(B2LEDPin,LOW);
-    digitalWrite(GLEDPin, LOW);
+    digitalWrite(2 , LOW);
+    digitalWrite(3 , LOW);
+    digitalWrite(4 , LOW);
+    digitalWrite(5 , LOW);
+    digitalWrite(6 , LOW);
+    digitalWrite(7 , LOW);
   }
   
 }

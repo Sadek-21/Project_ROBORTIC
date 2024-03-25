@@ -2,5 +2,5 @@
     "board": "arduino:avr:uno",
     "programmer": "avrisp",
     "output": ".arduino/output",
-    "sketch": "Liquid_Level_Detector/Liquid_Level_Detector.ino"
+    "sketch": "Project_with_simcard/Project_with_simcard_code/Project_with_simcard_code.ino"
 }

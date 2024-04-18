@@ -3,9 +3,13 @@
 
 LiquidCrystal_I2C lcd(0x27, 20, 4);
 
-const int saPin = A0; // Solar amperage
-const int svPin = A1; // Solar voltage
-const int evPin = A2; // Battery voltage
+const int saPin = A3;  // Update this to the pin connected to your current sensor
+const int svPin = A1;
+const int evPin = A2;
+
+float R1 = 30000.0;
+float R2 = 7500.0;
+
 
 void setup() {
   Serial.begin(9600);
@@ -14,11 +18,14 @@ void setup() {
 }
 
 void loop() {
-  float amp = getAmperage(saPin);
-  float svv = getVoltage(svPin);
+  float amp = getCurrent(saPin);   // Get the current from the sensor
   float evv = getVoltage(evPin);
+  float expectedCapacity = calculateCurrentCapacity(evv);  // Calculate expected capacity
 
   Serial.print("Read Voltage: "); Serial.println(evv);
+  Serial.print("Read Current: "); Serial.println(amp);
+  Serial.print("Expected Capacity: "); Serial.println(expectedCapacity, 2);
+
 
   if (evv < 2.0) {
     lcd.setCursor(0, 0);
@@ -26,36 +33,46 @@ void loop() {
     lcd.setCursor(0, 1);
     lcd.print("                ");
   } else {
-    int epp = calculatePercentage(evv, 12.5, 10.5); // Assuming 12.5V is 100% and 10.5V is 0%
-
-    Serial.print("Percentage: "); Serial.println(epp);
+    int epp = calculatePercentage(evv, 12.01, 2);
 
     lcd.setCursor(0, 1);
-    lcd.print("A:" + String(amp, 2) + "A " + "V:" + String(evv, 2)+"V");
-
+    lcd.print("A:" + String(expectedCapacity, 2) + " " +"V:" + String(evv, 2) );
     lcd.setCursor(0, 0);
     lcd.print("BATTERY:" + String(epp) + "%      ");
   }
-  //lcd.print("A:" + String(amp, 2) + "A " + "V:" + String(svv, 2) + "V");
-
   delay(100);
 }
 
-float getAmperage(int pin) {
-  int value = analogRead(pin);
-  return map(value, 0, 1023, 0, 3); // Update mapping based on actual sensor range
+float getVoltage(int pin) {
+  int value = analogRead(pin);                  // Read the analog value from the pin
+  float vOUT = (value * 5.0) / 1024.0;          // Calculate the output voltage from the ADC value
+  float vIN = vOUT / (R2 / (R1 + R2));          // Calculate the input voltage using the voltage divider formula
+  return vIN;                                   // Return the input voltage
 }
 
-float getVoltage(int pin) {
-    int value = analogRead(pin);
-    float voltage = (value * 5.0) / 1023.0; // 5.0 represents the reference voltage
-    float scaledVoltage = voltage * (12.5 / 5.0); // Adjust the ratio based on actual measurements
-    return scaledVoltage;
+float getCurrent(int pin) {
+  int analogValue = analogRead(pin);
+  float voltageDrop = (analogValue * 5.0) / 1024.0;
+  float current = voltageDrop / 0.1; // Assuming shunt resistor value of 0.1 ohms for current measurement
+  return current;
 }
+// Solving these two equations:
+float m = (1.35 - 1.3) / (12.30 - 12);  // Change in capacity / Change in voltage
+float b = 1.3 - m * 12;                // Rearranging the first equation for b
+
+// Now, rewrite the calculateCurrentCapacity function:
+float calculateCurrentCapacity(float voltage) {
+  if (voltage < 10.0) {
+    return 0;
+  } else {
+    return m * voltage + b;  // Using the new line parameters
+  }
+}
+
 
 
 int calculatePercentage(float voltage, float maxVolt, float minVolt) {
-    float scaled = (voltage - minVolt) / (maxVolt - minVolt);
-    int percentage = scaled * 100;
-    return constrain(percentage, 0, 100); // Ensures the percentage is within 0 to 100
+  float scaled = (voltage - minVolt) / (maxVolt - minVolt);
+  int percentage = scaled * 100;
+  return constrain(percentage, 0, 100);
 }

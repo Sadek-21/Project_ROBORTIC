@@ -2,5 +2,5 @@
     "board": "arduino:avr:uno",
     "programmer": "avrisp",
     "output": ".arduino/output",
-    "sketch": "Project_with_simcard/Project_with_simcard_code/Project_with_simcard_code.ino"
+    "sketch": "1_Electronic_Lock/Electronic_Lock.ino"
 }

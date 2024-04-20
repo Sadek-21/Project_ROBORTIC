@@ -3,7 +3,15 @@ import time
 import cv2
 import numpy as np
 
-cap = cv2.VideoCapture(1)
+# Try different camera indices until you find the one corresponding to your external camera
+for i in range(4):
+    cap = cv2.VideoCapture(i)
+    if not cap.isOpened():
+        print("Camera at index", i, "not available")
+    else:
+        print("Using camera at index", i)
+        break
+
 ser = serial.Serial('COM3', 9600)
 
 Xposition = 90
@@ -11,6 +19,10 @@ Yposition = 90
 
 while True:
     _, frame = cap.read()
+    if frame is None:
+        print("Error: Unable to capture frame")
+        break
+    
     frame = cv2.flip(frame, 1)
     frame = cv2.resize(frame, (300, 300))
     hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
@@ -39,7 +51,6 @@ while True:
         cv2.line(frame, (0, medium_y), (600, medium_y), (0, 255, 0), 2)
         text3 = "mediumY = " + str(medium_y)
         cv2.putText(frame, text3, (0, 50), cv2.FONT_HERSHEY_SIMPLEX, 0.50, (0, 255, 50))
-
         # ////////////////////////////////////////////////////////////////////
         if medium_x > center_x +40:
             Xposition += 2
@@ -60,9 +71,3 @@ while True:
         break
 cap.release()
 cv2.destroyAllWindows()
-
-
-
-
-
-

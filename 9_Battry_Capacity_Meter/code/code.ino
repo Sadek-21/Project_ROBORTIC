@@ -56,20 +56,18 @@ float getCurrent(int pin) {
   float current = voltageDrop / 0.1; // Assuming shunt resistor value of 0.1 ohms for current measurement
   return current;
 }
+
 // Solving these two equations:
 float m = (1.35 - 1.3) / (12.30 - 12);  // Change in capacity / Change in voltage
 float b = 1.3 - m * 12;                // Rearranging the first equation for b
-
 // Now, rewrite the calculateCurrentCapacity function:
 float calculateCurrentCapacity(float voltage) {
-  if (voltage < 10.0) {
+  if (voltage < 1.0) {
     return 0;
   } else {
     return m * voltage + b;  // Using the new line parameters
   }
 }
-
-
 
 int calculatePercentage(float voltage, float maxVolt, float minVolt) {
   float scaled = (voltage - minVolt) / (maxVolt - minVolt);

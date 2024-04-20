@@ -9,9 +9,9 @@ HX711 scale;
 Servo myServo;
 
 float calibration_factor = -7050; // Calibration factor for HX711
-const float upper_threshold_weight = 3.7; // Weight threshold to move servo to 160 degrees
+const float upper_threshold_weight = 10; // Weight threshold to move servo to 160 degrees
 const float lower_threshold_weight = -0.5; // Lower threshold to move servo back to 30 degrees
-int currentServoPosition = 30; // Start position of servo
+int currentServoPosition = -80; // Start position of servo
 
 void setup() {
   Serial.begin(9600);
@@ -34,13 +34,15 @@ void loop() {
     currentServoPosition = 110;  // Move servo to 160 degrees
     myServo.write(currentServoPosition);
     Serial.println("Assisting up...");
-  } else if (weight <= lower_threshold_weight && currentServoPosition != 30) {
-    currentServoPosition = 30;  // Move servo back to 30 degrees
+  } else if (weight <= lower_threshold_weight && currentServoPosition != -80) {
+    currentServoPosition = -80;  // Move servo back to 30 degrees
     myServo.write(currentServoPosition);
     Serial.println("Assisting down...");
   }
 
-  delay(1000);  // Delay to stabilize readings and reduce "chatter"
+  Serial.print("Servo Position: ");
+  Serial.println(currentServoPosition);
+  delay(100);  // Delay to stabilize readings and reduce "chatter"
 }
 
 

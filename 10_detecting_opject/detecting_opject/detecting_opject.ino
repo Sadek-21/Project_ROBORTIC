@@ -1,23 +1,3 @@
-#include <Servo.h>
-Servo myservo;
-int pos = 90; // Initial position
-
-void setup() {
-  myservo.attach(10);
-  Serial.begin(9600);
-  myservo.write(pos);
-}
-
-void loop() {
-  if (Serial.available() > 0) {
-    char x = Serial.read();
-    if (x == 'a') {  // Check if 'a' is received, indicating the start of a position command
-      if (Serial.available() > 0) {
-        int v = Serial.parseInt(); // Read the integer position
-        v = constrain(v, 0, 180); // Constrain the value to ensure servo safety
-        myservo.write(v);
-      }
-    }
-  }
-  delay(10); // Small delay to stabilize the servo
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:ff7b845170833795ba67f8371f9d7c646aa9b1c1cdb22441384f3d8b56a734f9
+size 620

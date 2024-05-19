@@ -1,2 +1,19 @@
 # Ignore PDF files
 *.pdf
+<<<<<<< HEAD
+*.mp4
+*.mkv
+*.avi
+*.mov
+*.docx
+*.mp4
+*.stl
+*.SLDDRW
+
+# Ignore SolidWorks files
+*.sldprt
+*.sldasm
+*.slddrw
+/SLDWORKS/
+=======
+>>>>>>> 69fdf4078533cfe4f885f6840a782de973fd7e08

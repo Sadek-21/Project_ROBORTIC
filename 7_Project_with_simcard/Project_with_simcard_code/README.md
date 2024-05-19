@@ -1,1 +1,3 @@
-This project is a basic Arduino-based system designed to send an alert message via SMS when a button is pressed, indicating a problem with a specific machine. The system consists of an Arduino board, a keypad for input, an LM044L LCD for display, and a SIM800L GSM module for sending SMS. When the button is pressed, the Arduino reads the input from the keypad and sends an SMS message containing the predefined alert message to a specified phone number. The LCD provides visual feedback during the process, indicating the status of the SMS sending operation. This project is suitable for monitoring and alerting purposes in various applications where remote notification of issues is required.
+version https://git-lfs.github.com/spec/v1
+oid sha256:87b5a17f9f7760332af77d5712216c417a1942bba755ce916d50eb4fa64f3605
+size 893

@@ -1,18 +1,3 @@
-void setup() 
-{
-  pinMode(13,OUTPUT); 
-}
-void loop() 
-{
-  float Sensor = analogRead(A0);  
-  int Temp = (Sensor*500)/1023; // Storing value in Degree Celsius
-  
-  if(Temp < 50) //If Temperature is Less Than 15'C
-  {
-    digitalWrite(13,HIGH);  //Turn ON the Heater
-  }
-  else
-  {
-    digitalWrite(13,LOW);  //Turn OFF the Heater
-  }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:80373d9dea0a77a007d70bc097297b420fc3c54ee61e16a495f57296479c0448
+size 533

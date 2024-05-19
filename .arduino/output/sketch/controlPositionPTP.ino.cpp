@@ -1,29 +1,3 @@
-#include <Arduino.h>
-#line 1 "C:\\Users\\mohsa\\OneDrive\\Desktop\\Ardouino\\Project_ROBORTIC\\ArduinoSketches\\controlPositionPTP\\controlPositionPTP.ino"
-#include <Servo.h>
-
-Servo myservo;  
-
-int positionDesired = 0;
-int counter = 0;
-int reps = 5;
-
-void setup() {
-  Serial.begin(9600);
-  myservo.attach(3);  
-}
-
-void loop() {
-  positionDesired = 20;
-  myservo.write(positionDesired);
-  delay(1000);
-  positionDesired = 115;
-  myservo.write(positionDesired);
-  delay(1000);
-  counter++;
-  if(counter == reps) 
-  { 
-    exit(0);
-  }
-}
-
+version https://git-lfs.github.com/spec/v1
+oid sha256:28391d2f464bfe1f80d41c7e4562bc6cd3a02fa0fb0fd5005e41e421bf530717
+size 536

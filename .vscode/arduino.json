@@ -1,6 +1,3 @@
-{
-    "board": "arduino:avr:uno",
-    "programmer": "avrisp",
-    "output": ".arduino/output",
-    "sketch": "1_Electronic_Lock/Electronic_Lock.ino"
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:d1503a47d2b7918435195b0ba89f5064e22e4900bab3695756805442cb476089
+size 349
